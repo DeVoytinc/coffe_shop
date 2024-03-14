@@ -1,5 +1,5 @@
 
-import 'package:coffe_shop/src/features/view/menu_screen.dart';
+import 'package:coffe_shop/src/features/menu/view/menu_screen.dart';
 import 'package:coffe_shop/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 
