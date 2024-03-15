@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 final theme = ThemeData(
   scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
   primaryColor: AppColors.primary,
-
   cardTheme: const CardTheme(),
   textTheme: const TextTheme(),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.primary,
+      elevation: 0,
+      textStyle: TextStyle(color: Colors.white),
+    ),
+  ),
 );

@@ -11,7 +11,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final _categoryContainerHeight = 280.0;
+  final _categoryContainerHeight = 270.0;
   final ScrollController _scrollController = ScrollController();
   int _currentScrollIndex = 0;
 
@@ -29,12 +29,9 @@ class _MenuScreenState extends State<MenuScreen> {
     });
   }
 
-  void _onNumberTap(int index){
-    _scrollController.animateTo(index * _categoryContainerHeight, duration: const Duration(seconds: 1), curve: Curves.easeIn);
-
-    setState(() {
-      _currentScrollIndex = index;
-    });
+  void _onNumberTap(int index) {
+    _scrollController.animateTo(index * _categoryContainerHeight,
+        duration: const Duration(milliseconds: 200), curve: Curves.ease);
   }
 
   @override
@@ -44,7 +41,7 @@ class _MenuScreenState extends State<MenuScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 36,
+              height: 50,
               width: double.infinity,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -52,13 +49,28 @@ class _MenuScreenState extends State<MenuScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(13)),
-                            color: index == _currentScrollIndex
-                                ? AppColors.primary
-                                : Colors.white),
-                        child: Center(child: Text(menu[index].name),),
+                      child: GestureDetector(
+                        onTap: () => _onNumberTap(index),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(13)),
+                              color: index == _currentScrollIndex
+                                  ? AppColors.primary
+                                  : Colors.white),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                menu[index].name,
+                                style: TextStyle(
+                                    color: index == _currentScrollIndex
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   }),
@@ -72,6 +84,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   return Container(
                     height: _categoryContainerHeight,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           menu[indexCategory].name,
