@@ -7,11 +7,9 @@ class CoffeeShopApp extends StatelessWidget {
   const CoffeeShopApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
       home: const MenuScreen(),
     );
-  }
 }
