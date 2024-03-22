@@ -27,93 +27,86 @@ class _MenuItemState extends State<MenuItem> {
   }
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: 180,
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
+  Widget build(BuildContext context) => DecoratedBox(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(16),
+      color: Colors.white,
+    ),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+          child: Image.asset(
+            widget.menuItemModel.imagePath,
+            height: 100,
+            fit: BoxFit.fitWidth,
           ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Image.asset(
-                  widget.menuItemModel.imagePath,
+        ),
+        Text(
+          widget.menuItemModel.name,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        if (count <= 0)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ElevatedButton(
+              onPressed: increaseCount,
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 30),
+              ),
+              child: Text(
+                '${widget.menuItemModel.price.round()} руб',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          )
+        else
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: decreaseCount,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(0, 30),
+                    shape: const CircleBorder(),
+                  ),
+                  child: Text(
+                    '-',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                 ),
-              ),
-              Text(
-                widget.menuItemModel.name,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              if (count <= 0)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ElevatedButton(
-                    onPressed: increaseCount,
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(200, 30),
+                Expanded(
+                  child: Container(
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(13),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Center(
                       child: Text(
-                        '${widget.menuItemModel.price.round()} руб',
+                        count.toString(),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   ),
-                )
-              else
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: decreaseCount,
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(0, 30),
-                          shape: const CircleBorder(),
-                        ),
-                        child: Text(
-                          '-',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(13),
-                          ),
-                          child: Center(
-                            child: Text(
-                              count.toString(),
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: increaseCount,
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(0, 30),
-                          shape: const CircleBorder(),
-                        ),
-                        child: Text(
-                          '+',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
-                    ],
+                ),
+                ElevatedButton(
+                  onPressed: increaseCount,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(0, 30),
+                    shape: const CircleBorder(),
+                  ),
+                  child: Text(
+                    '+',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
-            ],
+              ],
+            ),
           ),
-        ),
-      );
+      ],
+    ),
+  );
 }

@@ -6,14 +6,6 @@ List<String> categoriesname = [
   'Кофе с молоком',
   'Чай',
   'Авторские напитки',
-  'Черный кофе',
-  'Кофе с молоком',
-  'Чай',
-  'Авторские напитки',
-   'Черный кофе',
-  'Кофе с молоком',
-  'Чай',
-  'Авторские напитки',
 ];
 
 
@@ -22,7 +14,7 @@ List<Category> menu = List.generate(
   (index) => Category(
     name: categoriesname[index],
     items: List.generate(
-      3,
+      3 + (index * 2),
       (index) => const MenuItemModel(
           name: 'Олеато', imagePath: 'assets/images/coffee.png', price: 139),
     ),
