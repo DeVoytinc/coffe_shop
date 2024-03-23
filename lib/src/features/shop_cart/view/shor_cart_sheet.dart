@@ -1,3 +1,4 @@
+import 'package:coffe_shop/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ShopCart extends StatelessWidget {
@@ -30,7 +31,7 @@ class ShopCart extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Ваш заказ',
+                    S.of(context).yourOrder,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   IconButton(
