@@ -8,6 +8,7 @@ final theme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primary,
+      foregroundColor: Colors.white,
       elevation: 0,
       textStyle: const TextStyle(color: Colors.white),
     ),
@@ -17,6 +18,11 @@ final theme = ThemeData(
       color: Color.fromARGB(255, 0, 0, 0),
       fontSize: 14,
       fontWeight: FontWeight.w400,
+    ),
+    titleLarge: TextStyle(
+      color: Color.fromARGB(255, 0, 0, 0),
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
     ),
     bodyLarge: TextStyle(
       color: Colors.black,

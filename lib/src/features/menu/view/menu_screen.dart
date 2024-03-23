@@ -1,5 +1,6 @@
 import 'package:coffe_shop/src/features/menu/data/test_data.dart';
 import 'package:coffe_shop/src/features/menu/view/widget/menu_item.dart';
+import 'package:coffe_shop/src/features/shop_cart/view/shor_cart_sheet.dart';
 import 'package:coffe_shop/src/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -95,7 +96,40 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) => Scaffold(
         floatingActionButton: Visibility(
           visible: true,
-          child: FloatingActionButton(onPressed: () {}),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Row(
+              children: [
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      barrierColor: Colors.transparent,
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      elevation: 1,
+                      builder: (BuildContext context) => const ShopCart(),
+                    );
+                  },
+                  style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                        elevation: const MaterialStatePropertyAll(5),
+                        shape: MaterialStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                        ),
+                      ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.shopping_bag_outlined),
+                      Text('139 р'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         body: SafeArea(
           child: Column(
